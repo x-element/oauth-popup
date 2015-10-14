@@ -97,8 +97,8 @@
               scope.fire('response', scope.response);
             }
 
-            popup.close();
             clearInterval(polling);
+            popup.close();
           }
         } catch (error) {
           // console.warn(error);
@@ -108,7 +108,7 @@
           clearInterval(polling);
           scope.error = { data: 'Provider Popup Blocked' };
           scope.fire('error', scope.error);
-        } else if (popup.closed) {
+        } else if (popup.closed && scope.error) {
           clearInterval(polling);
           scope.error = { data: 'Authorization Failed' };
           scope.fire('error', scope.error);
